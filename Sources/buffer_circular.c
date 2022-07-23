@@ -11,7 +11,7 @@
 
 /*!
  * @brief Inicializar um buffer circular
- * @param[in] buffer endereco
+ * @param[in] buffer enderec
  * @param[in] tamanho do buffer
  */
 void BC_init(BufferCirc_type *buffer, unsigned int tamanho) 
