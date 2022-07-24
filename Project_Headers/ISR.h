@@ -8,12 +8,6 @@
 #ifndef ISR_H_
 #define ISR_H_
 
-typedef enum state_tag{
-INICIO,
-RESULTADO,
-CRONOMETRO,
-RELOGIO,
-TERMOMETRO }estado_type;
 
 /*!
  * @brief Le o estado do aplicativo
@@ -51,5 +45,8 @@ void ISR_Realinhamento();
  * @return estado vazio do buffer
  */
 uint8_t ISR_BufferEntradaVazio();
+
+int ISR_LeTempo_Cronometro();
+float ComputaIntervaloTempo();
 
 #endif /* ISR_H_ */

@@ -30,7 +30,7 @@ Sources/util.o: ../Sources/util.c \
  C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/math_config.h \
  C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/arm/math.ARM.h \
  C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cerrno \
- C:/Users/ea871/156377/UART_BLE/Project_Headers/util.h
+ C:/Users/ea871/156377/projeto_final_git/Project_Headers/util.h
 
 C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/lib_ewl.prefix:
 
@@ -94,4 +94,4 @@ C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/arm/math.ARM.h:
 
 C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cerrno:
 
-C:/Users/ea871/156377/UART_BLE/Project_Headers/util.h:
+C:/Users/ea871/156377/projeto_final_git/Project_Headers/util.h:

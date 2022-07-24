@@ -18,10 +18,11 @@
 #include "stdlib.h"
 #include "math.h"
 #include "util.h"
+estado_type state_tag, new_state_tag;
 
 void delay_10us (unsigned int multiplos)
 {
-	int j = multiplos*21;
+	int j = multiplos*10;
 	
 	while (j) j--;
 }
@@ -128,83 +129,6 @@ void dhms2s (uint8_t DD, uint8_t HH, uint8_t MM, uint8_t SS, uint32_t *segundos)
 }
 
 
-char *ftoa(float valor, char* string){
-	int inteiro, virgula, flag_inteiro, flag_virgula;
-	
-	//Ting: Para 2 digitos, precisamos de 3 bytes, um para '\0'
-	//char virgula_char[2], inteiro_char[3];
-	char virgula_char[3], inteiro_char[3];
-
-	//Ting: o algoritmo eh muito limitado considerando que a aprte inteira so tenha 2 digitos!
-	//Vejam a implementacao em 
-	//https://www.geeksforgeeks.org/convert-floating-point-number-string/
-	
-	float virgula_float;
-
-	inteiro = (int)(valor);
-	
-	virgula_float = (valor-inteiro)*100.;
-	
-	//Ting: E virgula? Qual eh o valor?
-	virgula = (int)virgula_float;
-	
-	//Ting: Neste projeto, os valores podem ser negativos ...
-	//if (virgula_float - virgula > 0.5) {
-	if (fabs(virgula_float) - abs(virgula) > 0.5) {
-		virgula += 1;
-	}
-	
-	//converte a parte inteira e fracionaria para ASCII
-	
-	//Ting: A declaracao char * itoa significa que o valor retornado pela funcao itoa
-	//eh o endereco do tipo char. Portanto, com a chamada *itoa voces pegariam o conteudo
-	//do endereo retornado. Se nao precisarem, podem chamar sem *:
-//	*itoa(inteiro, inteiro_char, 10);
-//	*itoa(virgula, virgula_char, 10);
-	itoa(inteiro, inteiro_char, 10);
-	itoa(virgula, virgula_char, 10);
-	
-	flag_inteiro = strlen(inteiro_char);
-	flag_virgula = strlen(virgula_char);
-	
-	//se o tamanho da parte inteira for 2
-	if (flag_inteiro== 2){
-		string[0] = ' ';
-		string[1] = inteiro_char[0];
-		string[2] = inteiro_char[1];
-	} 
-	//se o tamanho da parte inteira for 1
-	else if (flag_inteiro == 1){
-		string[0] = '=';
-		string[1] = ' ';
-		string[2] = ' ';
-		string[3] = ' ';
-		string[4] = inteiro_char[0];
-		string[5] = '\0';
-	}
-	else{
-		string[0] = '=';
-		string[1] = ' ';
-		string[2] = inteiro_char[0];
-		string[3] = inteiro_char[1];
-		string[4] = inteiro_char[2];
-	}
-
-	if (flag_virgula== 1){
-		string[5] = '0';
-		string[6] = virgula_char[0];
-		string[7] = '\0';
-	} else {
-		string[5] = virgula_char[0];
-		string[6] = virgula_char[1];
-		string[7] = '\0';
-	}
-
-	
-	return string;
-}
-
-
 /*!
  * @brief Separar a string extraída do buffer de entrada em 3 tokens, 2 operandos e 1 operador.	
  * @param[in] string mensagem de entrada
@@ -266,4 +190,124 @@ int atoOp (char *string, char *op, float *fvalor, int *ivalor, int *efloat){
 		return -1;
 	}
 	return 0;
+}
+
+
+/**
+ * @brief Inverte a string
+ * @param[in] str endereço da string
+ * @param[in] tamanho -> tamanho da string
+ */
+void reverse(char *str, int tamanho){
+	int i = 0, j = tamanho -1, temp;
+	while(i<j){
+		temp = str[i];
+		str[i] = str[j];
+		str[j] = temp;
+		i++;
+		j--;
+	}
+}
+/**
+ * @brief Inverte a string
+ * @param[in] str endereço da string
+ * @param[in] tamanho -> tamanho da string
+ */
+int itos (int x, char str[], int d){
+	int i = 0;
+	
+	while(x){
+		str[i++] = (x%10) + '0';
+		x = x/10;
+	}
+	
+	//Adiciona 0 a string
+	while(i < d){
+		str[i++] ='0';
+	}
+	
+	reverse(str, i);
+	str[i] = '\0';
+	return i;
+}
+
+/**
+ * @brief float para string
+ * @param[in] m valor em float
+ * @param[in] res endereço de retorno da string
+ * @param[in] decimal valor do mod
+ */
+char *ftoa(float m, char* res, int decimal){
+	
+	uint8_t j=0;
+
+	if (m < 0.0) {
+		j = 1;
+		res[0] = '-';
+	}
+	float n = fabs(m);
+	
+	//Extrai a parte inteira
+	int ipart = (int)n;
+	
+	//Extrai a parte float
+	float fpart = n -(float)ipart;
+	
+	//Converte parte inteira em string, inserindo '0' qdo a casa inteira eh 0.
+	int i;
+	
+	if (ipart == 0) {
+		i = 1;
+		res[j] = '0';
+	} else {
+		i = itos(ipart, res+j, 0);
+	}
+	
+	//checa o decimal e coloca o ponto
+	if(decimal != 0){
+		res[i+j]='.';
+		
+		fpart = fpart * pow(10, decimal);
+		
+		//ajuste de arredondamento!
+		if ((fpart - (int)fpart) >= 0.5) {
+			itos((int)(fpart+1), res+1+i+j, decimal);
+		} else {
+			itos((int)fpart, res+1+i+j, decimal);			
+		}
+	}
+	
+	return res;
+}
+
+/**
+ * @brief processamento do caractere recebido do Terminal
+ * @param[in] caractere c
+ */
+void processa_Terminal (char c) {
+	switch (c) {
+	case 'H':
+	case 'h':
+		state_tag = RELOGIO;
+		//escreveMsgHorario(c);
+		break;
+	case 'T':
+	case 't':
+		state_tag = TERMOMETRO;
+		//escreveMsgTemperatura(c);
+		break;
+	case 'C':
+	case 'c':
+		state_tag = CRONOMETRO;
+		//escreveMsgCronometro(c);
+		break;	
+	case 'R':
+	case 'r':
+		state_tag = RESET;
+		//escreveMsgCronometro(c);
+		break;	
+	default:
+		//escreveMsgRealimentacao(c);
+		break;
+	}return state_tag;
 }

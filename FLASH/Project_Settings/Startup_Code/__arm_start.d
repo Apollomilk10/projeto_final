@@ -20,7 +20,7 @@ Project_Settings/Startup_Code/__arm_start.o: \
  C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/stdint.h \
  C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cstdint \
  C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/limits_api.h \
- C:/Users/ea871/156377/UART_BLE/Project_Settings/Startup_Code/runtime_configuration.h
+ C:/Users/ea871/156377/projeto_final_git/Project_Settings/Startup_Code/runtime_configuration.h
 
 C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/lib_ewl.prefix:
 
@@ -62,4 +62,4 @@ C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/cstdint:
 
 C:/Freescale/CW_MCU_v10.6/MCU/ARM_GCC_Support/ewl/EWL_C/include/limits_api.h:
 
-C:/Users/ea871/156377/UART_BLE/Project_Settings/Startup_Code/runtime_configuration.h:
+C:/Users/ea871/156377/projeto_final_git/Project_Settings/Startup_Code/runtime_configuration.h:
