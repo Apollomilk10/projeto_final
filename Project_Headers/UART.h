@@ -21,6 +21,7 @@ typedef struct _UARTConfiguration_tag {
 	uint8_t c1_pt;			///< tipo de paridade (0-par; 1-impar)
 	uint8_t c2_rwu; 		///< setar o RX no estado de standby aguardando pelo wakeup
 	uint8_t c2_sbk;			///< habilitar o enfileiramento de caracteres break
+	uint8_t s1_or;
 	uint8_t s2_rxinv;		///< habilitar a inversao da polaridade dos bits do RX
 	uint8_t s2_rwuid;		///< habilitar o set do IDLE bit durante standby do RX
 	uint8_t s2_brk13;		///< selecionar o comprimento de caracter break (0=10 bits; 1=13 bits)
@@ -42,8 +43,8 @@ uint8_t UART_configure(uint8_t m, UARTConfig_type *config);
 
 void UART_initH5Bluetooth(UARTConfig_type *config);
 
-void UART_ativaIRQH5Bluetooth();
+void UART_IRQ14Bluetooth();
 
-void UART2_ativaInterruptRxTerminal();
+void UART2_ativaRX();
 
 #endif /* UART_H_ */

@@ -5,6 +5,6 @@
 ################################################################################
 
 export GNU_Make_Install_DirEnv=$(CWInstallLocationEnv)/gnu/bin
-export ProjDirPath=C:/Users/ea871/156377/UART_BLE
-export CWInstallLocationEnv=C:/Freescale/CW_MCU_v10.6
+export ProjDirPath=C:/Users/lucas-pc/Desktop/EA871/projeto_final_git
+export CWInstallLocationEnv=C:/Freescale/CW MCU v10.6
 export ARMSourceryDirEnv=$(CWInstallLocationEnv)/Cross_Tools/arm-none-eabi-gcc-4_7_3/bin

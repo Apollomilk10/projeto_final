@@ -33,6 +33,7 @@ UARTConfig_type config2 = {
 		.c1_pt=0,			///< bit de paridade par (sem efeito se pe==0)
 		.c2_rwu=0,			///< operacao normal de recepcao do UART0
 		.c2_sbk=0,			///< operacao normal de transmissor do UART0
+		.s1_or=0,
 		.s2_rxinv=0,		///< polaridade dos dados de RX nao eh invertida
 		.s2_rwuid=0,		///< nao tem efeito para rwu==0
 		.s2_brk13=0,		///< nao tem efeito para operacao normal de transmissor
@@ -77,17 +78,17 @@ int main (void)
 	/*!
 	 * Ativa IRQs
 	 */
-	UART_ativaIRQH5Bluetooth();
+	UART_IRQ14Bluetooth();
 	
 	/*!
-	 * Inicia Buffer Circular para Rx
+	 * Inicia Buffer Circular para Rx e Tx
 	 */
 	ISR_inicializaBC();
 	
 	/*!
 	 * Habilita a interrupcao do Rx do UART2
 	 */
-	UART2_ativaInterruptRxTerminal();
+	UART2_ativaRX();
 
 	/*!
 	 * Reseta o estado do aplicativo
@@ -96,7 +97,11 @@ int main (void)
 	state_tag = ISR_LeEstado();
 	
 	for(;;) {
-			if (state_tag == RESULTADO) {
+		
+			if (state_tag == ENVIA) {
+				ISR_enviaString("Ola mundo");
+				
+			} else if (state_tag == RESULTADO) {
 				ISR_extraiString(string);
 			}
 			

@@ -10,6 +10,7 @@
 
 typedef enum state_tag{
 INICIO,
+ENVIA,
 RESULTADO,
 CRONOMETRO,
 RELOGIO,
@@ -21,6 +22,7 @@ TERMOMETRO }estado_type;
 uint8_t ISR_LeEstado ();
 
 
+void ADC0_IRQHandler(void);
 
 void UART2_IRQHandler();
 
@@ -41,10 +43,27 @@ void ISR_inicializaBC();
  */
 void ISR_extraiString(char *string);
 
+
+/*!
+ * @brief Envia do buffer de saida uma linha de caracteres.
+ * @param[out] string contendo a linha terminada com '\0'.
+ */
+void ISR_enviaString(char *string);
+
 /*!
  * @brief Envia caracteres de controle para realinhamento das linhas no Terminal
  */
 void ISR_Realinhamento();
+
+/*!
+ * @brief Verificar se o buffer de saida esta vazio
+ * @return estado vazio do buffer
+ */
+uint8_t ISR_BufferSaidaVazio();
+
+//void ISR_BufferVazioE();
+
+//void ISR_BufferVazioS();
 
 /*!
  * @brief Verificar se o buffer de saida esta vazio

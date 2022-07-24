@@ -8,7 +8,7 @@
 #include "derivative.h"
 #include "UART.h"
 
-UART_MemMapPtr UART[] = UART_BASE_PTRS ;
+UART_MemMapPtr UART[] = UART_BASE_PTRS;
 
 uint8_t UART_configure(uint8_t m, UARTConfig_type *config) {
 	uint8_t x = m-1;
@@ -66,7 +66,15 @@ uint8_t UART_configure(uint8_t m, UARTConfig_type *config) {
 	UART[x]->C2 |= (config->c2_rwu << UART_C2_RWU_SHIFT |
 			config->c2_sbk << UART_C2_SBK_SHIFT
 	);
-
+	
+	/*
+	 * Configurar o registrador S1
+	 */
+	UART[x]->S1 &= ~(UART_S1_OR_MASK);
+	
+	UART[x]->S1 &= ~(config->s1_or << UART_S1_OR_SHIFT);
+	
+	
 	/*!
 	 * Configurar o registrador S2
 	 */ 
@@ -126,16 +134,17 @@ uint8_t UART_configure(uint8_t m, UARTConfig_type *config) {
 
 void UART_initH5Bluetooth (UARTConfig_type *config) {
 	/*!
-	 * Configura funcao Tx do pino PTE22 para obtenção dos valores do Bluetooth
+	 * Configura funcao Tx e Rx do pino PTE22 e PTE23 para obtenção dos valores do Bluetooth
 	 */	
 	SIM_SCGC5 |= SIM_SCGC5_PORTE_MASK ;
 
 	PORTE_PCR23 |= PORT_PCR_MUX(0x4);  // UART2_RX
-
+	PORTE_PCR22 |= PORT_PCR_MUX(0x4);  // UART2_TX
+	
 	UART_configure(2, config);
 }
 
-void UART_ativaIRQH5Bluetooth() {
+void UART_IRQ14Bluetooth() {
     /*! 
      * Ativa IRQ 14 (UART2) no NVIC: ativar, limpar pendencias e setar prioridade 1
      */
@@ -146,6 +155,8 @@ void UART_ativaIRQH5Bluetooth() {
 }
 
 
-void UART2_ativaInterruptRxTerminal() {
+void UART2_ativaRX() {
+	
+	//UART2_C2 |= UART_C2_TIE_MASK;	
 	UART2_C2 |= UART_C2_RIE_MASK;	
 }

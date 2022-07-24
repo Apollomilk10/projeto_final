@@ -49,7 +49,7 @@ void BC_free(BufferCirc_type *buffer)
  * @param[in] buffer endereco
  * @param[in] item a ser inserido
  */
-int BC_push (BufferCirc_type *buffer, char item)
+int BC_push(BufferCirc_type *buffer, char item)
 {
 	unsigned int next;
 
@@ -70,7 +70,7 @@ int BC_push (BufferCirc_type *buffer, char item)
  * @brief Retirar um elemento do buffer circular
  * @param[out] item a ser extraido do buffer
  */
-int BC_pop (BufferCirc_type *buffer, char *item)
+int BC_pop(BufferCirc_type *buffer, char *item)
 {
 	unsigned int next;
 
