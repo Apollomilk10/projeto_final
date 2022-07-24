@@ -932,7 +932,7 @@ END GROUP
  *(.cfmconfig)
                 0x00000400                . = ALIGN (0x4)
 
-.text           0x00000800     0x113c
+.text           0x00000800     0x1118
                 0x00000800                . = ALIGN (0x4)
  *(.text)
  .text          0x00000800       0x7c c:/freescale/cw mcu v10.6/cross_tools/arm-none-eabi-gcc-4_7_3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_arm_cmpdf2.o)
@@ -1032,64 +1032,64 @@ END GROUP
                 0x000012d8       0x1c ./Sources/UART.o
                 0x000012d8                UART2_ativaRX
  .text.UART2_IRQHandler
-                0x000012f4       0xc0 ./Sources/ISR.o
+                0x000012f4       0xa0 ./Sources/ISR.o
                 0x000012f4                UART2_IRQHandler
  .text.ISR_LeEstado
-                0x000013b4       0x14 ./Sources/ISR.o
-                0x000013b4                ISR_LeEstado
+                0x00001394       0x14 ./Sources/ISR.o
+                0x00001394                ISR_LeEstado
  .text.ISR_AtualizaEstado
-                0x000013c8       0x20 ./Sources/ISR.o
-                0x000013c8                ISR_AtualizaEstado
+                0x000013a8       0x20 ./Sources/ISR.o
+                0x000013a8                ISR_AtualizaEstado
  .text.ISR_inicializaBC
-                0x000013e8       0x24 ./Sources/ISR.o
-                0x000013e8                ISR_inicializaBC
+                0x000013c8       0x24 ./Sources/ISR.o
+                0x000013c8                ISR_inicializaBC
  .text.ISR_enviaString
-                0x0000140c       0xb4 ./Sources/ISR.o
-                0x0000140c                ISR_enviaString
+                0x000013ec       0xb0 ./Sources/ISR.o
+                0x000013ec                ISR_enviaString
  .text.ISR_extraiString
-                0x000014c0       0xdc ./Sources/ISR.o
-                0x000014c0                ISR_extraiString
- .text.sbrk     0x0000159c       0x2c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
-                0x0000159c                sbrk
- .text.malloc   0x000015c8      0x114 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
-                0x000015c8                malloc
- .text.free     0x000016dc       0x12 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
-                0x000016dc                free
- *fill*         0x000016ee        0x2 00
- .text.exit     0x000016f0       0x38 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(exit.o)
-                0x000016f0                exit
- .text.memset   0x00001728        0xc C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(memset.o)
-                0x00001728                memset
- .text.strcmp   0x00001734       0x1c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(strcmp.o)
-                0x00001734                strcmp
+                0x0000149c       0xdc ./Sources/ISR.o
+                0x0000149c                ISR_extraiString
+ .text.sbrk     0x00001578       0x2c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
+                0x00001578                sbrk
+ .text.malloc   0x000015a4      0x114 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
+                0x000015a4                malloc
+ .text.free     0x000016b8       0x12 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
+                0x000016b8                free
+ *fill*         0x000016ca        0x2 00
+ .text.exit     0x000016cc       0x38 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(exit.o)
+                0x000016cc                exit
+ .text.memset   0x00001704        0xc C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(memset.o)
+                0x00001704                memset
+ .text.strcmp   0x00001710       0x1c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(strcmp.o)
+                0x00001710                strcmp
  .text.__fill_mem
-                0x00001750       0x7e C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(__filll_mem.o)
-                0x00001750                __fill_mem
- *fill*         0x000017ce        0x2 00
+                0x0000172c       0x7e C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(__filll_mem.o)
+                0x0000172c                __fill_mem
+ *fill*         0x000017aa        0x2 00
  .text.__init_cpp
-                0x000017d0       0x48 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(gcc_ctor_dtor.o)
-                0x000017d0                __init_cpp
+                0x000017ac       0x48 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(gcc_ctor_dtor.o)
+                0x000017ac                __init_cpp
  .text.__fini_cpp
-                0x00001818       0x34 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(gcc_ctor_dtor.o)
-                0x00001818                __fini_cpp
+                0x000017f4       0x34 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(gcc_ctor_dtor.o)
+                0x000017f4                __fini_cpp
  .text.__copy_rom_section
-                0x0000184c       0x48 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(ROMCopy.o)
-                0x0000184c                __copy_rom_section
+                0x00001828       0x48 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(ROMCopy.o)
+                0x00001828                __copy_rom_section
  .text.__copy_rom_sections_to_ram
-                0x00001894       0x34 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(ROMCopy.o)
-                0x00001894                __copy_rom_sections_to_ram
+                0x00001870       0x34 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(ROMCopy.o)
+                0x00001870                __copy_rom_sections_to_ram
  .text.__destroy_global_chain
-                0x000018c8       0x1c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
-                0x000018c8                __destroy_global_chain
+                0x000018a4       0x1c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
+                0x000018a4                __destroy_global_chain
  .text.__init_registers
-                0x000018e4       0x1c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
-                0x000018e4                __init_registers
+                0x000018c0       0x1c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
+                0x000018c0                __init_registers
  .text.__init_user
-                0x00001900        0x4 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
-                0x00001900                __init_user
+                0x000018dc        0x4 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
+                0x000018dc                __init_user
  *(.rodata)
- .rodata        0x00001904        0xc ./Sources/main.o
- .rodata        0x00001910       0x2c ./Sources/ISR.o
+ .rodata        0x000018e0        0xc ./Sources/main.o
+ .rodata        0x000018ec       0x2c ./Sources/ISR.o
  *(.rodata*)
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
@@ -1098,62 +1098,62 @@ END GROUP
  *(.eh_frame)
  *(.init)
  *(.fini)
-                0x0000193c                . = ALIGN (0x4)
-                0x0000193c                _etext = .
+                0x00001918                . = ALIGN (0x4)
+                0x00001918                _etext = .
 
-.vfp11_veneer   0x0000193c        0x0
+.vfp11_veneer   0x00001918        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0000193c        0x0
+.v4_bx          0x00001918        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0000193c        0x0
+.iplt           0x00001918        0x0
  .iplt          0x00000000        0x0 ./Project_Settings/Startup_Code/kinetis_sysinit.o
 
-.rel.dyn        0x0000193c        0x0
+.rel.dyn        0x00001918        0x0
  .rel.iplt      0x00000000        0x0 ./Project_Settings/Startup_Code/kinetis_sysinit.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0000193c        0x0
-                0x0000193c                __exidx_start = .
+.ARM            0x00001918        0x0
+                0x00001918                __exidx_start = .
  *(.ARM.exidx*)
-                0x0000193c                __exidx_end = .
+                0x00001918                __exidx_end = .
 
-.ctors          0x0000193c        0x0
-                0x0000193c                __CTOR_LIST__ = .
+.ctors          0x00001918        0x0
+                0x00001918                __CTOR_LIST__ = .
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x0000193c                __CTOR_END__ = .
+                0x00001918                __CTOR_END__ = .
 
-.dtors          0x0000193c        0x0
-                0x0000193c                __DTOR_LIST__ = .
+.dtors          0x00001918        0x0
+                0x00001918                __DTOR_LIST__ = .
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x0000193c                __DTOR_END__ = .
+                0x00001918                __DTOR_END__ = .
 
-.preinit_array  0x0000193c        0x0
-                0x0000193c                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x00001918        0x0
+                0x00001918                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x0000193c                PROVIDE (__preinit_array_end, .)
+                0x00001918                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x0000193c        0x0
-                0x0000193c                PROVIDE (__init_array_start, .)
+.init_array     0x00001918        0x0
+                0x00001918                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
-                0x0000193c                PROVIDE (__init_array_end, .)
+                0x00001918                PROVIDE (__init_array_end, .)
 
-.fini_array     0x0000193c        0x0
-                0x0000193c                PROVIDE (__fini_array_start, .)
+.fini_array     0x00001918        0x0
+                0x00001918                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array*)
-                0x0000193c                PROVIDE (__fini_array_end, .)
-                0x0000193c                ___ROM_AT = .
+                0x00001918                PROVIDE (__fini_array_end, .)
+                0x00001918                ___ROM_AT = .
 
 .mtb            0x1ffff000        0x0
                 0x1ffff000                . = ALIGN (0x8)
@@ -1162,7 +1162,7 @@ END GROUP
                 0x1ffff000                . = ALIGN (0x8)
                 0x1ffff000                _mtb_end = .
 
-.data           0x1ffff000       0x28 load address 0x0000193c
+.data           0x1ffff000       0x28 load address 0x00001918
                 0x1ffff000                . = ALIGN (0x4)
                 0x1ffff000                _sdata = .
  *(.data)
@@ -1176,11 +1176,11 @@ END GROUP
                 0x1ffff028                _edata = .
                 0x00000028                ___data_size = (_edata - _sdata)
 
-.igot.plt       0x1ffff028        0x0 load address 0x00001964
+.igot.plt       0x1ffff028        0x0 load address 0x00001940
  .igot.plt      0x00000000        0x0 ./Project_Settings/Startup_Code/kinetis_sysinit.o
                 0x1ffff028                . = ALIGN (0x4)
 
-.bss            0x1ffff028       0x48 load address 0x00001964
+.bss            0x1ffff028       0x48 load address 0x00001940
                 0x1ffff028                __START_BSS = .
                 0x1ffff028                PROVIDE (__bss_start__, __START_BSS)
  *(.bss)
@@ -1209,11 +1209,11 @@ END GROUP
  *fill*         0x1ffff06e        0x2 00
                 0x1ffff070                __END_BSS = .
                 0x1ffff070                PROVIDE (__bss_end__, __END_BSS)
-                0x00001964                _romp_at = (___ROM_AT + SIZEOF (.data))
+                0x00001940                _romp_at = (___ROM_AT + SIZEOF (.data))
 
-.romp           0x1ffff070       0x18 load address 0x00001964
-                0x00001964                __S_romp = _romp_at
-                0x1ffff070        0x4 LONG 0x193c ___ROM_AT
+.romp           0x1ffff070       0x18 load address 0x00001940
+                0x00001940                __S_romp = _romp_at
+                0x1ffff070        0x4 LONG 0x1918 ___ROM_AT
                 0x1ffff074        0x4 LONG 0x1ffff000 _sdata
                 0x1ffff078        0x4 LONG 0x28 ___data_size
                 0x1ffff07c        0x4 LONG 0x0
@@ -1221,7 +1221,7 @@ END GROUP
                 0x1ffff084        0x4 LONG 0x0
 
 ._user_heap_stack
-                0x1ffff088      0x800 load address 0x0000197c
+                0x1ffff088      0x800 load address 0x00001958
                 0x1ffff088                . = ALIGN (0x4)
                 0x1ffff088                PROVIDE (end, .)
                 0x1ffff088                PROVIDE (_end, .)
@@ -1387,7 +1387,7 @@ OUTPUT(rot11_aula.elf elf32-littlearm)
  .debug_macinfo
                 0x00081d7b    0x265f0 ./Sources/ISR.o
 
-.debug_line     0x00000000     0x1afb
+.debug_line     0x00000000     0x1af9
  .debug_line    0x00000000      0x21f ./Project_Settings/Startup_Code/kinetis_sysinit.o
  .debug_line    0x0000021f      0x2a2 ./Project_Settings/Startup_Code/__arm_start.o
  .debug_line    0x000004c1      0x266 ./Project_Settings/Startup_Code/__arm_end.o
@@ -1395,15 +1395,15 @@ OUTPUT(rot11_aula.elf elf32-littlearm)
  .debug_line    0x00000a1b      0x277 ./Sources/main.o
  .debug_line    0x00000c92      0x2c5 ./Sources/buffer_circular.o
  .debug_line    0x00000f57      0x26d ./Sources/UART.o
- .debug_line    0x000011c4      0x30b ./Sources/ISR.o
- .debug_line    0x000014cf      0x156 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
- .debug_line    0x00001625       0x8d C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(exit.o)
- .debug_line    0x000016b2       0x90 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(memset.o)
- .debug_line    0x00001742       0x83 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(strcmp.o)
- .debug_line    0x000017c5       0xf6 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(__filll_mem.o)
- .debug_line    0x000018bb       0x6c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(gcc_ctor_dtor.o)
- .debug_line    0x00001927       0xbd C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(ROMCopy.o)
- .debug_line    0x000019e4      0x117 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
+ .debug_line    0x000011c4      0x309 ./Sources/ISR.o
+ .debug_line    0x000014cd      0x156 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(alloc.o)
+ .debug_line    0x00001623       0x8d C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(exit.o)
+ .debug_line    0x000016b0       0x90 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(memset.o)
+ .debug_line    0x00001740       0x83 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(strcmp.o)
+ .debug_line    0x000017c3       0xf6 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\libc.a(__filll_mem.o)
+ .debug_line    0x000018b9       0x6c C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(gcc_ctor_dtor.o)
+ .debug_line    0x00001925       0xbd C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(ROMCopy.o)
+ .debug_line    0x000019e2      0x117 C:/Freescale/CW MCU v10.6/MCU/ARM_GCC_Support/ewl/lib/armv6-m\librt.a(__arm_eabi_init.o)
 
 .debug_str      0x00000000      0xd25
  .debug_str     0x00000000      0x2a0 ./Project_Settings/Startup_Code/kinetis_sysinit.o

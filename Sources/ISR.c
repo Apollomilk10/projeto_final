@@ -39,7 +39,25 @@ void UART2_IRQHandler()
 {
 	char t, r;
 	
-	if ((UART2_C2 & UART_C2_TIE_MASK)) {
+	if ((UART2_S1 & UART_S1_RDRF_MASK)) {
+			/*!
+			 * Interrupcao solicitada pelo canal Rx
+			 */
+
+			r = UART2_D;
+			
+			UART2_D = r; // Ecoar informação para leitura no Bluetooth
+			
+			//Adicionar no buffer circular de entrada
+			if (r == '\r') {
+				//inserir o terminador e avisar o fim de uma string
+				BC_push(&bufferE, '\0');
+				//UART2_C2 &= ~UART_C2_TIE_MASK;
+				state_tag = RESULTADO;
+			} else {
+				BC_push(&bufferE, r);
+			} 
+	} else {
 		/*!
 		 * Interrupcao solicitada pelo canal Tx
 		 */
@@ -51,25 +69,7 @@ void UART2_IRQHandler()
 			UART2_C2 &= ~UART_C2_TIE_MASK;
 		} else {
 			UART2_D = t;			
-		}
-	} else if ((UART2_S1 & UART_S1_RDRF_MASK)) {
-		/*!
-		 * Interrupcao solicitada pelo canal Rx
-		 */
-
-		r = UART2_D;
-		
-		UART2_D = r; // Ecoar informação para leitura no Bluetooth
-		
-		//Adicionar no buffer circular de entrada
-		if (r == '\r') {
-			//inserir o terminador e avisar o fim de uma string
-			BC_push(&bufferE, '\0');
-			UART2_C2 &= ~UART_C2_TIE_MASK;
-			state_tag = RESULTADO;
-		} else {
-			BC_push(&bufferE, r);
-		}
+		} 
 	}
 }
 
@@ -97,9 +97,9 @@ void ISR_inicializaBC() {
 void ISR_enviaString(char *string){
 
 	uint8_t i;
-	while(BC_push(&bufferS, string[0])==-1);	
+	while(BC_push(&bufferS, ' ')==-1);
 	UART2_C2 |= UART_C2_TIE_MASK;
-	i=1;
+	i=0;
 	while (string[i] != '\0'){
 		while(BC_push(&bufferS, string[i])==-1);
 		i++;
