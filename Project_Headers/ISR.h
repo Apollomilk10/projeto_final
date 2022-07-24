@@ -8,13 +8,6 @@
 #ifndef ISR_H_
 #define ISR_H_
 
-typedef enum state_tag{
-INICIO,
-ENVIA,
-RESULTADO,
-CRONOMETRO,
-RELOGIO,
-TERMOMETRO }estado_type;
 
 /*!
  * @brief Le o estado do aplicativo
@@ -61,14 +54,18 @@ void ISR_Realinhamento();
  */
 uint8_t ISR_BufferSaidaVazio();
 
-//void ISR_BufferVazioE();
+void ISR_BufferVazioE();
 
-//void ISR_BufferVazioS();
+void ISR_BufferVazioS();
 
 /*!
  * @brief Verificar se o buffer de saida esta vazio
  * @return estado vazio do buffer
  */
 uint8_t ISR_BufferEntradaVazio();
+
+
+void BLE_PROCESS(char *string) ;
+
 
 #endif /* ISR_H_ */

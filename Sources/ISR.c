@@ -9,6 +9,7 @@
 #include "buffer_circular.h"
 #include "ISR.h"
 #include "string.h"
+#include "util.h"
 
 
 
@@ -53,7 +54,7 @@ void UART2_IRQHandler()
 				//inserir o terminador e avisar o fim de uma string
 				BC_push(&bufferE, '\0');
 				//UART2_C2 &= ~UART_C2_TIE_MASK;
-				state_tag = RESULTADO;
+				state_tag = BLE;
 			} else {
 				BC_push(&bufferE, r);
 			} 
@@ -106,37 +107,9 @@ void ISR_enviaString(char *string){
 	}
 	while(BC_push(&bufferS, '\n')==-1);
 	while(BC_push(&bufferS, '\0')==-1);
-	state_tag = INICIO;
+	
 }
 
-void ISR_extraiString(char *string) {
-	// TO DO:
-	//precisamos de strings bem definidas olhar no debug !
-	char *cases[] = {"RELOGIO","CRONOMETRO","TERMOMETRO"};
-	
-	uint8_t i = 0; 
-	
-	BC_pop(&bufferE, &string[i]);
-	while (string[i] != '\0') {
-		BC_pop(&bufferE, &string[++i]);				
-	}
-	
-	if (strcmp(string, cases[0])==0){
-		ISR_AtualizaEstado(RELOGIO);
-		
-	} else if (strcmp(string, cases[1])==0){
-		ISR_AtualizaEstado(CRONOMETRO);
-		
-	} else if (strcmp(string, cases[2])==0){
-		ISR_AtualizaEstado(TERMOMETRO);
-		
-	}
-	
-	//state_tag = INICIO;
-	state_tag = ENVIA;
-	BC_free(&bufferE);
-	
-}
 
 
 void ISR_Realinhamento() {
@@ -156,4 +129,53 @@ uint8_t ISR_BufferSaidaVazio() {
 uint8_t ISR_BufferEntradaVazio(){
 	
 	return BC_isEmpty(&bufferE);
+}
+
+void ISR_BufferVazioS() {
+	BC_free(&bufferS);
+}
+
+void ISR_BufferVazioE() {
+	BC_free(&bufferE);
+}
+
+
+void BLE_PROCESS(char *string) {
+	// TO DO:
+	//precisamos de strings bem definidas olhar no debug !
+	//char *cases[] = {"RELOGIO","CRONOMETRO","TERMOMETRO","RESET"};
+	
+	Transition_type transition = {
+			.transition1 = "WATCH",
+			.transition2 = "COUNT",     	
+			.transition3 = "MEASURE",
+			.transition4 = "RESET"
+	};
+	
+	uint8_t i = 0; 
+	
+	BC_pop(&bufferE, &string[i]);
+	while (string[i] != '\0') {
+		BC_pop(&bufferE, &string[++i]);				
+	}
+	
+	if (strcmp(string, transition.transition1)==0){
+		state_tag = RELOGIO;
+		
+	} else if (strcmp(string, transition.transition2)==0){
+		state_tag = CRONOMETRO;
+		
+	} else if (strcmp(string,transition.transition3)==0){
+		state_tag = TERMOMETRO;
+		
+	}else if (strcmp(string, transition.transition4)==0){
+		state_tag = INICIO;
+	}else{
+		state_tag = INICIO;
+	} 
+		
+	//state_tag = INICIO;
+	//state_tag = ENVIA;
+	BC_free(&bufferE);
+	
 }

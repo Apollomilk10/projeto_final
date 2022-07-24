@@ -267,3 +267,4 @@ int atoOp (char *string, char *op, float *fvalor, int *ivalor, int *efloat){
 	}
 	return 0;
 }
+

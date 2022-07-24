@@ -47,4 +47,5 @@ void UART_IRQ14Bluetooth();
 
 void UART2_ativaRX();
 
+	
 #endif /* UART_H_ */

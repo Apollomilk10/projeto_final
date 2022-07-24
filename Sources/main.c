@@ -50,9 +50,9 @@ UARTConfig_type config2 = {
 /*!
  * @brief Função principal
  */
-int main (void)
-{
+int main (void){
 	estado_type state_tag;
+	estado_type new_state_tag;
 	
 	char string[16];
 	
@@ -95,17 +95,46 @@ int main (void)
 	 */
 	ISR_AtualizaEstado(INICIO);
 	state_tag = ISR_LeEstado();
+	new_state_tag = RELOGIO;
+	
+	/* LCD */
+	GPIO_ativaConLCD ();
+	GPIO_initLCD ();
 	
 	for(;;) {
-		
-			if (state_tag == ENVIA) {
-				ISR_enviaString("Ola mundo");
-				
-			} else if (state_tag == RESULTADO) {
-				ISR_extraiString(string);
-			}
 			
-			state_tag = ISR_LeEstado();
+			switch(ISR_LeEstado()){
+			case BLE:
+				BLE_PROCESS(string);
+				break;
+			case INICIO:
+				GPIO_escreveStringLCD (0x00,"   BLE PROJECT   ");
+				GPIO_escreveStringLCD (0x40," LUCAS & LUCAS    ");
+				ISR_enviaString("   BLE PROJECT   ");
+				ISR_enviaString(" LUCAS & LUCAS    ");
+				ISR_AtualizaEstado(PADRAO);	
+				
+				
+				break;
+			case RELOGIO:
+				GPIO_escreveStringLCD (0x00,"RELOGIO:       ");
+				ISR_enviaString("RELOGIO:       ");
+				ISR_AtualizaEstado(PADRAO);	
+				break;
+			case CRONOMETRO:
+				GPIO_escreveStringLCD (0x00,"CRONOMETRO:    ");
+				ISR_enviaString("CRONOMETRO:    ");
+				ISR_AtualizaEstado(PADRAO);	
+				break;
+			case TERMOMETRO:
+				GPIO_escreveStringLCD (0x00,"TERMOMETRO:    ");
+				ISR_enviaString("TERMOMETRO:    ");
+				ISR_AtualizaEstado(PADRAO);	
+				break;
+			case PADRAO:
+				break;
+				
+			}
 	}
 	
 	return 0;
